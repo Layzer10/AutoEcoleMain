@@ -1,0 +1,28 @@
+/* Classe de base pour le bouton */
+.btnbase {
+    -fx-padding: 17px 40px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-width: 0;
+    -fx-background-color: #E87596;
+    -fx-font-size: 15px;
+    -fx-transition: all 0.3s ease;
+    -fx-effect: dropshadow(gaussian, rgba(201, 46, 70, 0.5), 10, 0, 0, 10);
+    -fx-text-fill: black;
+    -fx-cursor: hand;
+}
+
+/* Effet au survol : couleur légèrement assombrie */
+.btnbase:hover {
+    -fx-background-color: #D36482; /* Couleur assombrie */
+}
+
+/* Effet lorsque le bouton est cliqué */
+.btnbase:pressed {
+    -fx-background-color: #C94A6A; /* Changer la couleur lors du clic */
+    -fx-effect: dropshadow(gaussian, rgba(201, 46, 70, 0), 0, 0, 0, 0);
+    -fx-translate-y: 5px;
+    -fx-transition: 200ms;
+}
+
+

@@ -1,0 +1,60 @@
+REGLES :
+-METTRE TOUJOURS LA DATE ET L'AUTEUR DU MESSAGE
+-NOTER L'ESSENTIEL DES ERRORS DES CHOSES À TESTER ETC... LE RESTE EST DIRECTEMENT ECRIT EN COMMENTAIRE DANS LE CODE.
+-RESTER POLI ET COURTOIS
+
+#########################################################################################################################################
+
+14/11/2024 - SARA
+Modification lors du dernier Commit:
+-Ajout de tous les dossiers afin de bien commencer.
+-Ajout de la classe "ConnexionBDDAutoEcole" dans le dossier "tools". A TESTER. #IMPORTANT# Modifiction nécessaire afin du bon fonctionnement la
+BDD doit s'appeler OBLIGATOIREMENT "BDDAutoEcole", puis A chaque utilisation de la BDD changer le mot de passe "root" (Différent en
+fonction de application utiliser).
+-Ajout d'un fichier CSS
+
+02/12/2024 - SARA
+- Rajout d'AnchorPane
+
+02/12/2024 - THIBAULT
+- Envoyer la BDD modifier avec table relationnelle.
+
+06/12/2024 - Esteban
+- Connector / Eleve MVC / Moniteur MVC / Categorie MVC / Vehicule MVC / Licence MVC / Lecon MVC
+
+07/12/2024 - Esteban
+- Modif bdd avec compte / Requete connection eleve / ajout surcharge eleve / ajout constructeur vide pour requete / repository & service eleve modifier
+- Css
+
+09/12/2024 - Esteban
+- Modif application
+
+10/12/2024 - Esteban
+  - radio 1 selection possible, reperation date
+
+10/12/2024 - Sara
+- Ajustement de tout les bouton pour permettre une fluiditer dans la navigation de l'application
+
+
+-à faire: planning de l'élève après s'etre connecter
+
+10/12/2024 - Sara
+-Finit l'inscription (encore quelqhe modification + le css à faire)
+
+12/12/2024 - Thibault
+-Modifications de SceneBuilder pour pouvoir mettre le planning, l'ajout des leçon disponible et les stats
+
+12/12/2024 - Esteban
+-Correction controller
+
+17/12/2024 - Esteban
+-modif info eleve
+
+18/12/2024 - Esteban
+-inscription eleve
+-requete lecon
+
+20/12/2024 - Esteban
+-planning eleve et moniteur
+-liste des licences obtenues et non obtenues
+-création licence et ajout dans le table view
