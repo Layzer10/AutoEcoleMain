@@ -453,7 +453,7 @@
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnMenuEleveStats" alignment="BASELINE_LEFT" graphicTextGap="5.0" layoutX="10.0" layoutY="69.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#menuEleveClicked" prefHeight="50.0" prefWidth="170.0" styleClass="cmdExo" text="Stats">
+                        <Button fx:id="btnMenuEleveStats" alignment="BASELINE_LEFT" graphicTextGap="5.0" layoutX="10.0" layoutY="69.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#menuEleveClickedStats" prefHeight="50.0" prefWidth="170.0" styleClass="cmdExo" text="Stats">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

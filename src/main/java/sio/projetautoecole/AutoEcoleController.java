@@ -672,4 +672,12 @@ public class AutoEcoleController implements Initializable {
         vehiculeRepository.createVehicule(Modele, Immatriculation, Marque, Annee);
 
     }
+
+    @FXML
+    public void menuEleveClickedStats(Event event) {
+        bpStatsEleve.setVisible(true);
+        bpInfoEleve.setVisible(false);
+        bpPlanningEleve.setVisible(false);
+        bpLeconEleve.setVisible(false);
+    }
 }
