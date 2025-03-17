@@ -186,9 +186,15 @@ public class LeconRepository implements RepositoryInterface<Lecon, String>
                 "INNER JOIN Moniteur m ON l.CodeMoniteur = m.CodeMoniteur " +
                 "INNER JOIN Eleve e ON l.CodeEleve = e.CodeEleve " +
                 "INNER JOIN Vehicule v ON l.Immatriculation = v.Immatriculation " +
-                "WHERE l.Sexe = 0";
+                "WHERE e.Sexe = 0";
 
         PreparedStatement preparedStatement = dataSource.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            NbLeconM = resultSet.getInt(1); // Récupérer directement le COUNT
+        }
+
+        resultSet.close();
         preparedStatement.close();
 
         return NbLeconM;
@@ -202,9 +208,15 @@ public class LeconRepository implements RepositoryInterface<Lecon, String>
                 "INNER JOIN Moniteur m ON l.CodeMoniteur = m.CodeMoniteur " +
                 "INNER JOIN Eleve e ON l.CodeEleve = e.CodeEleve " +
                 "INNER JOIN Vehicule v ON l.Immatriculation = v.Immatriculation " +
-                "WHERE l.Sexe = 1";
+                "WHERE e.Sexe = 1";
 
         PreparedStatement preparedStatement = dataSource.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            NbLeconF = resultSet.getInt(1); // Récupérer directement le COUNT
+        }
+
+        resultSet.close();
         preparedStatement.close();
 
         return NbLeconF;

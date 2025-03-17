@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -228,6 +229,10 @@ public class AutoEcoleController implements Initializable {
     private DatePicker annee;
     @FXML
     private Label nbLecon;
+    @FXML
+    private PieChart Camenbert;
+    @FXML
+    private AnchorPane AdminStats;
 
     public AutoEcoleController() {
         this.compteService = new CompteService();
@@ -330,7 +335,7 @@ public class AutoEcoleController implements Initializable {
     }
 
     @FXML
-    public void clickBtnValiderConnect(Event event) {
+    public void clickBtnValiderConnect(Event event) throws SQLException {
 
         String login = txtIdentifiant.getText();
         String mdp = txtMotDePasse.getText();
@@ -465,6 +470,7 @@ public class AutoEcoleController implements Initializable {
                         ArrayList<Lecon> listeLecons = leconRepository.getAllBy(m); // Récupérer les leçons pour l'élève
                         ObservableList<Lecon> observableList = FXCollections.observableArrayList(listeLecons);
                         tvLeconMoniteur.setItems(observableList); // Ajouter les données au TableView
+
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -512,8 +518,20 @@ public class AutoEcoleController implements Initializable {
             }}
 
         if(radioBtnAdmin.isSelected()){
+            AdminStats.setVisible(true);
             Vehicule.setVisible(true);
+            LeconRepository leconRepository = new LeconRepository();
+            ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+            String categorie1= "Homme";
+            int homme= leconRepository.getNbLeconBySexeM();
 
+            String categorie2= "Femme";
+            int femme= leconRepository.getNbLeconBySexeF();
+
+            pieData.add(new PieChart.Data(categorie1, homme));
+            pieData.add(new PieChart.Data(categorie2, femme));
+
+            Camenbert.setData(pieData);
         }
     }
 

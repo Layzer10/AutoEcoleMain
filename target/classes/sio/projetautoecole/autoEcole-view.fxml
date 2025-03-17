@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -373,7 +374,7 @@
                   </HBox>
                </bottom>
             </BorderPane>
-            <BorderPane fx:id="bpEleve" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;">
+            <BorderPane fx:id="bpEleve" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;" visible="false">
                <top>
                   <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="642.0" style="-fx-padding: 10px;" styleClass="hbTitre" BorderPane.alignment="CENTER">
                      <children>
@@ -753,7 +754,7 @@
                   </AnchorPane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="bpAdmin" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;" visible="false">
+            <BorderPane fx:id="bpAdmin" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;">
                <top>
                   <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="642.0" style="-fx-padding: 10px;" styleClass="hbTitre" BorderPane.alignment="CENTER">
                      <children>
@@ -830,7 +831,7 @@
                   </VBox>
                </left>
                <center>
-                  <AnchorPane fx:id="Vehicule" prefHeight="415.0" prefWidth="544.0" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="Vehicule" prefHeight="415.0" prefWidth="544.0" visible="false" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
@@ -885,6 +886,11 @@
                   </AnchorPane>
                </center>
             </BorderPane>
+            <AnchorPane fx:id="AdminStats" layoutX="10.0" layoutY="10.0" prefHeight="680.0" prefWidth="1066.0" visible="false">
+               <children>
+                  <PieChart fx:id="Camenbert" layoutX="307.0" layoutY="96.0" prefHeight="204.0" prefWidth="227.0" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
