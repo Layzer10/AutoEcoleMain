@@ -141,6 +141,7 @@ public class AutoEcoleController implements Initializable {
     private DatePicker dateE;
     Moniteur m;
     Eleve e;
+    Responsable r;
     @FXML
     private AnchorPane bpInfoEleve;
     @FXML
@@ -518,20 +519,54 @@ public class AutoEcoleController implements Initializable {
             }}
 
         if(radioBtnAdmin.isSelected()){
-            AdminStats.setVisible(true);
-            Vehicule.setVisible(true);
-            LeconRepository leconRepository = new LeconRepository();
-            ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
-            String categorie1= "Homme";
-            int homme= leconRepository.getNbLeconBySexeM();
+            try {
+                // Essayer de récupérer le compte basé sur les identifiants
+                Compte compte = compteService.setCurrentCompte(login, mdp);
 
-            String categorie2= "Femme";
-            int femme= leconRepository.getNbLeconBySexeF();
+                if (compte != null) {
+                    // Connexion réussie
+                    r = new ResponsableRepository().setCurrentResponsable(compte.getIdCompte());
 
-            pieData.add(new PieChart.Data(categorie1, homme));
-            pieData.add(new PieChart.Data(categorie2, femme));
+                    // Afficher une alerte de succès
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Connexion réussie");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Bienvenue, " + compte.getLoginCompte());
+                    alert.showAndWait();
 
-            Camenbert.setData(pieData);
+                    bpAdmin.setVisible(true);
+                    LeconRepository leconRepository = new LeconRepository();
+                    ObservableList<PieChart.Data> pieData = FXCollections.observableArrayList();
+                    String categorie1= "Homme";
+                    int homme= leconRepository.getNbLeconBySexeM();
+
+                    String categorie2= "Femme";
+                    int femme= leconRepository.getNbLeconBySexeF();
+
+                    pieData.add(new PieChart.Data(categorie1, homme));
+                    pieData.add(new PieChart.Data(categorie2, femme));
+
+                    Camenbert.setData(pieData);
+
+
+                } else {
+                    // Identifiants incorrects
+                    bpAdmin.setVisible(false);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur de connexion");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Identifiant ou mot de passe incorrect.");
+                    alert.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de connexion");
+                alert.setHeaderText(null);
+                alert.setContentText("Une erreur est survenue lors de la connexion.");
+                alert.showAndWait();
+            }
+
         }
     }
 

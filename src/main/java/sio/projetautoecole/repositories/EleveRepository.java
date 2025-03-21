@@ -17,6 +17,11 @@ public class EleveRepository implements RepositoryInterface<Eleve, Integer>{
     }
 
     @Override
+    public Responsable setCurrentResponsable(int numCompte) throws SQLException {
+        return null;
+    }
+
+    @Override
     public void createCompte(String login, String password) throws SQLException {
 
     }

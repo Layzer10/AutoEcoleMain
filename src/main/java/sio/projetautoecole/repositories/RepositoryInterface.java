@@ -9,6 +9,8 @@ import java.util.Date;
 
 public interface RepositoryInterface<T,ID>
 {
+    Responsable setCurrentResponsable(int numCompte) throws SQLException;
+
     void createCompte(String login, String password) throws SQLException;
 
     void create(String login, String password) throws SQLException;

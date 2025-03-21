@@ -17,6 +17,11 @@ public class CompteRepository implements RepositoryInterface<Compte, Integer> {
     }
 
     @Override
+    public Responsable setCurrentResponsable(int numCompte) throws SQLException {
+        return null;
+    }
+
+    @Override
     public void createCompte(String login, String password) throws SQLException {
         int increment = autoIncrement();
         Compte compte= new Compte();

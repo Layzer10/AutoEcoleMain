@@ -886,7 +886,7 @@
                   </AnchorPane>
                </center>
             </BorderPane>
-            <AnchorPane fx:id="AdminStats" layoutX="10.0" layoutY="10.0" prefHeight="680.0" prefWidth="1066.0" visible="false">
+            <AnchorPane fx:id="AdminStats" layoutX="10.0" layoutY="10.0" prefHeight="680.0" prefWidth="1066.0">
                <children>
                   <PieChart fx:id="Camenbert" layoutX="307.0" layoutY="96.0" prefHeight="204.0" prefWidth="227.0" />
                </children>

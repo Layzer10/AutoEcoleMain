@@ -20,6 +20,11 @@ public class VehiculeRepository implements RepositoryInterface<Vehicule, String>
     }
 
     @Override
+    public Responsable setCurrentResponsable(int numCompte) throws SQLException {
+        return null;
+    }
+
+    @Override
     public void createCompte(String login, String password) throws SQLException {
 
     }
