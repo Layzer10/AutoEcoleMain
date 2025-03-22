@@ -148,6 +148,27 @@ public class CategorieRepository implements RepositoryInterface<Categorie, Integ
 
     }
 
+    public int getPrixCategorie(String nomCategorie) throws SQLException {
+        int prixCate=0;
+        String query = "SELECT c.Prix " +
+                "FROM Categorie c " +
+                "WHERE c.Libelle = ?";
+
+        PreparedStatement preparedStatement = dataSource.prepareStatement(query);
+        preparedStatement.setString(1, nomCategorie);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            prixCate = resultSet.getInt(1); // Récupérer le prix
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return prixCate;
+    }
+
+
+
 
 
 

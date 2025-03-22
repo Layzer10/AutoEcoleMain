@@ -171,6 +171,46 @@ public class LicenceRepository implements RepositoryInterface<Licence, String>
         return increment;
 
     }
+
+    public int getHommeByLicenceCategorie(int idCategorie) throws SQLException {
+        int nbHomme =0;
+        String query = "SELECT COUNT(l.CodeLicence) " +
+                "FROM Licence l " +
+                "INNER JOIN Moniteur m ON l.CodeMoniteur = m.CodeMoniteur " +
+                "WHERE l.CodeCategorie = ? AND m.Sexe=0";
+
+        PreparedStatement preparedStatement = dataSource.prepareStatement(query);
+        preparedStatement.setInt(1, idCategorie);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            nbHomme = resultSet.getInt(1); // Récupérer le prix
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return nbHomme;
+    }
+
+    public int getFemmeByLicenceCategorie(int idCategorie) throws SQLException {
+        int nbFemme =0;
+        String query = "SELECT COUNT(l.CodeLicence) " +
+                "FROM Licence l " +
+                "INNER JOIN Moniteur m ON l.CodeMoniteur = m.CodeMoniteur " +
+                "WHERE l.CodeCategorie = ? AND m.Sexe=1";
+
+        PreparedStatement preparedStatement = dataSource.prepareStatement(query);
+        preparedStatement.setInt(1, idCategorie);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            nbFemme = resultSet.getInt(1); // Récupérer le prix
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return nbFemme;
+    }
 }
 
 

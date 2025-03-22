@@ -5,7 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -109,8 +112,6 @@ public class AutoEcoleController implements Initializable {
     private ImageView imgBtnInfoPersoEleve;
     @FXML
     private Button btnMenuPlanningAdmin;
-    @FXML
-    private Button btnMenuLicenceAdmin;
     @FXML
     private ImageView imgBtnInfoPersoMoniteur;
     @FXML
@@ -234,6 +235,12 @@ public class AutoEcoleController implements Initializable {
     private PieChart Camenbert;
     @FXML
     private AnchorPane AdminStats;
+    @FXML
+    private Button btnMenuVehiculeAdmin;
+    @FXML
+    private BarChart<String, Number> BareChart;
+    @FXML
+    private LineChart<String, Number> LineChart;
 
     public AutoEcoleController() {
         this.compteService = new CompteService();
@@ -256,10 +263,101 @@ public class AutoEcoleController implements Initializable {
         bpAdmin.setVisible(false);
         bpMoniteur.setVisible(false);
         bpEleve.setVisible(false);
-        bpConnexion.setVisible(false);
+        bpConnexion.setVisible(true);
         bpInscription.setVisible(false);
-        bpAccueil.setVisible(true);
+        bpAccueil.setVisible(false);
+        AdminStats.setVisible(false);
+        CategorieRepository categorieRepository= new CategorieRepository();
+        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
+        series1.setName("Prix par catégorie");
+        try {
+            series1.getData().add(new XYChart.Data<>("Automobile", categorieRepository.getPrixCategorie("Automobile")));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            series1.getData().add(new XYChart.Data<>("Poids lourd", categorieRepository.getPrixCategorie("Poids lourd")));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            series1.getData().add(new XYChart.Data<>("Bateau", categorieRepository.getPrixCategorie("Bateau")));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            series1.getData().add(new XYChart.Data<>("Moto", categorieRepository.getPrixCategorie("Moto")));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            series1.getData().add(new XYChart.Data<>("Transport en commun", categorieRepository.getPrixCategorie("Transport en commun")));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        BareChart.getData().addAll(series1);
 
+
+
+        LicenceRepository licenceRepository= new LicenceRepository();
+        XYChart.Series<String, Number> Homme = new XYChart.Series<>();
+        Homme.setName("Nombre d'homme par catégorie de licence");
+        try {
+            Homme.getData().add(new XYChart.Data<>("Automobile", licenceRepository.getHommeByLicenceCategorie(1)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Homme.getData().add(new XYChart.Data<>("Poids lourd", licenceRepository.getHommeByLicenceCategorie(2)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Homme.getData().add(new XYChart.Data<>("Bateau", licenceRepository.getHommeByLicenceCategorie(3)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Homme.getData().add(new XYChart.Data<>("Moto", licenceRepository.getHommeByLicenceCategorie(4)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Homme.getData().add(new XYChart.Data<>("Transport en commun", licenceRepository.getHommeByLicenceCategorie(5)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+
+        XYChart.Series<String, Number> Femme = new XYChart.Series<>();
+        Femme.setName("Nombre d'femme par catégorie de licence");
+        try {
+            Femme.getData().add(new XYChart.Data<>("Automobile", licenceRepository.getFemmeByLicenceCategorie(1)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Femme.getData().add(new XYChart.Data<>("Poids lourd", licenceRepository.getFemmeByLicenceCategorie(2)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Femme.getData().add(new XYChart.Data<>("Bateau", licenceRepository.getFemmeByLicenceCategorie(3)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Femme.getData().add(new XYChart.Data<>("Moto", licenceRepository.getFemmeByLicenceCategorie(4)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+        try {
+            Femme.getData().add(new XYChart.Data<>("Transport en commun", licenceRepository.getFemmeByLicenceCategorie(5)));
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        LineChart.getData().addAll(Homme,Femme);
     }
     @FXML
     public void clickBtnInscription(Event event) {
@@ -518,6 +616,7 @@ public class AutoEcoleController implements Initializable {
                 alert.showAndWait();
             }}
 
+
         if(radioBtnAdmin.isSelected()){
             try {
                 // Essayer de récupérer le compte basé sur les identifiants
@@ -547,6 +646,8 @@ public class AutoEcoleController implements Initializable {
                     pieData.add(new PieChart.Data(categorie2, femme));
 
                     Camenbert.setData(pieData);
+                    bpAdmin.setVisible(true);
+
 
 
                 } else {
@@ -732,5 +833,24 @@ public class AutoEcoleController implements Initializable {
         bpInfoEleve.setVisible(false);
         bpPlanningEleve.setVisible(false);
         bpLeconEleve.setVisible(false);
+    }
+
+
+    @Deprecated
+    public void btnMenuVehiculeAdmin(Event event) {
+        Vehicule.setVisible(true);
+        AdminStats.setVisible(false);
+    }
+
+    @FXML
+    public void menuAdminClickedStats(Event event) {
+        AdminStats.setVisible(true);
+        Vehicule.setVisible(false);
+    }
+
+    @FXML
+    public void menuAdminClickedVehicule(Event event) {
+        AdminStats.setVisible(false);
+        Vehicule.setVisible(true);
     }
 }
