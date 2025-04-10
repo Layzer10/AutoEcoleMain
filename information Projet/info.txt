@@ -1,0 +1,16 @@
+Fiche description du projet Java de Rodrigues-seabra
+
+Code de Java dans le repository github :
+https://github.com/Layzer10/AutoEcoleMain.git
+
+Pour commencer, Dans PHPMyAdmin, Importer la base « bddautoeccole » contenant les données
+de la base pour projet.
+
+Enfin, Vous pouvez vous servir des codes pour vous connecter :
+élève :
+Login : login0
+Mot de passe : password0
+
+Moniteur :
+login : login69
+mot de passe : password69
