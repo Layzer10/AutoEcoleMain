@@ -63,16 +63,17 @@ public class EleveRepository implements RepositoryInterface<Eleve, Integer>{
         eleve.setMail(email);
         int increment = autoIncrementIndex();
         int increment2 = autoIncrementPrimaire();
-        PreparedStatement preparedStatement = dataSource.prepareStatement("insert into eleve (Nom, Prenom, Adresse1, CodePostal, Ville, Telephone, mail, NumCompte, CodeEleve) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+        PreparedStatement preparedStatement = dataSource.prepareStatement("insert into eleve (Nom, Prenom, DateDeNaissance , Adresse1, CodePostal, Ville, Telephone, mail, NumCompte, CodeEleve) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,?) ");
         preparedStatement.setString(1, eleve.getNomEleve());
         preparedStatement.setString(2,eleve.getPrenomEleve());
-        preparedStatement.setString(3,eleve.getAdresse());
-        preparedStatement.setString(4,eleve.getCodePostal());
-        preparedStatement.setString(5,eleve.getVille());
-        preparedStatement.setString(6,eleve.getNumero());
-        preparedStatement.setString(7,eleve.getMail());
-        preparedStatement.setInt(8,increment);
-        preparedStatement.setInt(9,increment2);
+        preparedStatement.setString(3,eleve.getDateNaissance());
+        preparedStatement.setString(4,eleve.getAdresse());
+        preparedStatement.setString(5,eleve.getCodePostal());
+        preparedStatement.setString(6,eleve.getVille());
+        preparedStatement.setString(7,eleve.getNumero());
+        preparedStatement.setString(8,eleve.getMail());
+        preparedStatement.setInt(9,increment);
+        preparedStatement.setInt(10,increment2);
         preparedStatement.executeUpdate();
         preparedStatement.close();
 

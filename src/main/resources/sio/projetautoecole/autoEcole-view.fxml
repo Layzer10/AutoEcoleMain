@@ -8,10 +8,12 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -23,7 +25,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.projetautoecole.AutoEcoleController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.projetautoecole.AutoEcoleController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0">
          <children>
@@ -110,7 +112,7 @@
                         <VBox layoutX="10.0" layoutY="120.0" prefHeight="25.0" prefWidth="640.0" />
                         <HBox alignment="CENTER" prefHeight="35.0" prefWidth="640.0">
                            <children>
-                              <RadioButton fx:id="radioBtnEleve" mnemonicParsing="false" onMouseClicked="#clickRadioBtnEleve" text="Eleve">
+                              <RadioButton fx:id="radioBtnEleve" mnemonicParsing="false" onMouseClicked="#clickRadioBtnEleve" text="élève">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
@@ -378,7 +380,7 @@
                   </HBox>
                </bottom>
             </BorderPane>
-            <BorderPane fx:id="bpEleve" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;" visible="false">
+            <BorderPane fx:id="bpEleve" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;">
                <top>
                   <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="642.0" style="-fx-padding: 10px;" styleClass="hbTitre" BorderPane.alignment="CENTER">
                      <children>
@@ -530,33 +532,49 @@
                                  </font>
                               </Button>
                               <Label layoutX="197.0" layoutY="167.0" text="nom" />
-                              <Label layoutX="436.0" layoutY="167.0" text="prenom" />
+                              <Label layoutX="436.0" layoutY="167.0" text="prénom" />
                               <Label layoutX="193.0" layoutY="222.0" text="adresse" />
                               <Label layoutX="436.0" layoutY="344.0" text="mail" />
                               <Label layoutX="440.0" layoutY="282.0" text="ville" />
                               <Label layoutX="163.0" layoutY="282.0" prefHeight="18.0" prefWidth="66.0" text="code postal" />
-                              <Label layoutX="169.0" layoutY="341.0" prefHeight="18.0" prefWidth="59.0" text="telephone" />
+                              <Label layoutX="169.0" layoutY="341.0" prefHeight="18.0" prefWidth="59.0" text="téléphone" />
                               <Label layoutX="440.0" layoutY="222.0" text="date" />
                               <DatePicker fx:id="dateE" layoutX="475.0" layoutY="220.0" />
                            </children></AnchorPane>
-                        <AnchorPane fx:id="bpLeconEleve" prefHeight="643.0" prefWidth="950.0" visible="false" />
-                        <AnchorPane fx:id="bpStatsEleve" prefHeight="643.0" prefWidth="950.0">
+                        <AnchorPane fx:id="bpLeconEleve" layoutX="14.0" layoutY="6.0" prefHeight="643.0" prefWidth="950.0">
+                           <children>
+                              <Spinner fx:id="ChoixHeureLecon" layoutX="387.0" layoutY="264.0" prefHeight="25.0" prefWidth="176.0" />
+                              <Label layoutX="208.0" layoutY="189.0" prefHeight="52.0" prefWidth="90.0" text="Date Leçon :" />
+                              <Label layoutX="206.0" layoutY="259.0" prefHeight="35.0" prefWidth="85.0" text="Heure :" />
+                              <Label layoutX="203.0" layoutY="322.0" prefHeight="38.0" prefWidth="83.0" text="Voiture :" />
+                              <DatePicker fx:id="ChoixDateLecon" layoutX="388.0" layoutY="203.0" />
+                              <AnchorPane fx:id="bpPlanningEleve" prefHeight="643.0" prefWidth="950.0" visible="false">
+                                 <children>
+                                    <TableView fx:id="tvLeconEleve" layoutX="211.0" layoutY="204.0" prefHeight="234.0" prefWidth="528.0">
+                                      <columns>
+                                        <TableColumn fx:id="colLecon" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="CodeLecon" />
+                                        <TableColumn fx:id="colDate" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="Date" />
+                                          <TableColumn fx:id="colHeure" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="Heure" />
+                                          <TableColumn fx:id="colMoniteur" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="Moniteur" />
+                                          <TableColumn fx:id="colImatriculation" maxWidth="1224.000244140625" minWidth="30.0" prefWidth="122.4000244140625" text="Immatriculation" />
+                                          <TableColumn fx:id="colReglee" maxWidth="1040.0" minWidth="30.0" prefWidth="104.0" text="payer" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="217.0" layoutY="45.0" prefHeight="17.0" prefWidth="516.0" text="Création d'une Leçon pour élève :">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="ChoixVoitureLecon" layoutX="388.0" layoutY="329.0" prefHeight="25.0" prefWidth="178.0" />
+                              <Label layoutX="207.0" layoutY="393.0" prefHeight="17.0" prefWidth="92.0" text="Moniteur :" />
+                              <ComboBox fx:id="ChoixMoniteurLecon" layoutX="382.0" layoutY="398.0" prefHeight="25.0" prefWidth="188.0" />
+                           </children></AnchorPane>
+                        <AnchorPane fx:id="bpStatsEleve" prefHeight="643.0" prefWidth="950.0" visible="false">
                            <children>
                               <Label fx:id="nbLecon" layoutX="397.0" layoutY="114.0" text="Label" />
                               <Label layoutX="246.0" layoutY="114.0" text="Nombre de lecons reglées:" />
-                           </children></AnchorPane>
-                        <AnchorPane fx:id="bpPlanningEleve" layoutX="10.0" layoutY="10.0" prefHeight="643.0" prefWidth="950.0" visible="false">
-                           <children>
-                              <TableView fx:id="tvLeconEleve" layoutX="211.0" layoutY="204.0" prefHeight="234.0" prefWidth="528.0">
-                                <columns>
-                                  <TableColumn fx:id="colLecon" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="CodeLecon" />
-                                  <TableColumn fx:id="colDate" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="Date" />
-                                    <TableColumn fx:id="colHeure" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="Heure" />
-                                    <TableColumn fx:id="colMoniteur" maxWidth="750.0" minWidth="30.0" prefWidth="75.0" text="Moniteur" />
-                                    <TableColumn fx:id="colImatriculation" maxWidth="1224.000244140625" minWidth="30.0" prefWidth="122.4000244140625" text="Immatriculation" />
-                                    <TableColumn fx:id="colReglee" maxWidth="1040.0" minWidth="30.0" prefWidth="104.0" text="Reglée" />
-                                </columns>
-                              </TableView>
                            </children></AnchorPane>
                      </children>
                   </AnchorPane>
@@ -758,7 +776,7 @@
                   </AnchorPane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="bpAdmin" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;">
+            <BorderPane fx:id="bpAdmin" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #DB6084;" visible="false">
                <top>
                   <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="642.0" style="-fx-padding: 10px;" styleClass="hbTitre" BorderPane.alignment="CENTER">
                      <children>
@@ -890,7 +908,7 @@
                   </AnchorPane>
                </center>
             </BorderPane>
-            <AnchorPane fx:id="AdminStats" layoutX="134.0" layoutY="10.0" prefHeight="680.0" prefWidth="942.0">
+            <AnchorPane fx:id="AdminStats" layoutX="134.0" layoutY="10.0" prefHeight="680.0" prefWidth="942.0" visible="false">
                <children>
                   <PieChart fx:id="Camenbert" layoutX="307.0" layoutY="96.0" prefHeight="204.0" prefWidth="227.0" />
                   <BarChart fx:id="BareChart" layoutX="57.0" layoutY="341.0" prefHeight="314.0" prefWidth="378.0">

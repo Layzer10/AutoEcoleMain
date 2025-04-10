@@ -226,4 +226,16 @@ public class LeconRepository implements RepositoryInterface<Lecon, String>
 
         return NbLeconF;
     }
+
+    public ArrayList<Vehicule> getVoitureLeçon(Vehicule vehicule) throws SQLException {
+        ArrayList<Vehicule> voiture = new ArrayList<>();
+        String query = "SELECT Immatriculation " +
+                "FROM vehicule v ";
+        PreparedStatement preparedStatement = dataSource.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            voiture.add(resultSet.getString("Immatriculation"));
+        }
+        return voiture;
+    }
 }
